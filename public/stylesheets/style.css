@@ -1,0 +1,77 @@
+:root {
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f8f9fa;
+}
+
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+
+.alert {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.alert-success {
+  background-color: var(--success-color);
+  color: #fff;
+}
+
+.alert-danger {
+  background-color: var(--danger-color);
+  color: #fff;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  margin: 50px 300px;
+}
+
+.card-body {
+  padding: 40px;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  display: table;
+  table-layout: fixed;
+  overflow-x: auto; 
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--light-color);
+}
+
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 100px; 
+}
