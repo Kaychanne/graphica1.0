@@ -7,6 +7,19 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 <body>
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><img src="/images/logo.png" alt="logo"></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">Artikel</a></li>
+                <li><a href="">Portofolio</a></li>
+                <li><a href="">Layanan</a></li>
+                <li><a href="">Tentang Kami</a></li>
+                <li><a href="">Kontak</a></li>
+            </ul>
+        </div>
+    </header>
     <div class="container">
         <div class="row">
             <div class="column">
@@ -16,9 +29,13 @@
                 <% if (messages && messages.error && messages.error.length > 0) { %>
                     <div class="alert alert-danger" role="alert"><%- messages.error %></div>
                 <% } %>
+                <!-- Pesanan Baru -->
                 <div class="card">
                     <div class="card-body">
                         <a href="/create" class="button">Pesan</a>
+                        <div class="header">
+                            <p>Pesanan Baru</p>
+                        </div>
                         <div class="table-container">
                             <table class="table">
                                 <thead>
@@ -30,29 +47,79 @@
                                         <th>Layanan</th>
                                         <th>Paket</th>
                                         <th>Deskripsi</th>
-                                        <th>Edit/Delete</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% if(data && data.length > 0) { %>
-                                        <% for(var i = 0; i < data.length; i++) { %>  
+                                    <% if(data && data.newOrders && data.newOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.newOrders.length; i++) { %>  
                                             <tr>
                                                 <th scope="row" class="text-center"><%= (i + 1) %></th>
-                                                <td><%= data[i].email %></td>
-                                                <td><%= data[i].nama %></td>
-                                                <td><%= data[i].notelp %></td>
-                                                <td><%= data[i].layanan %></td>
-                                                <td><%= data[i].paket %></td>
-                                                <td><%= data[i].deskripsi %></td>
+                                                <td><%= data.newOrders[i].email %></td>
+                                                <td><%= data.newOrders[i].nama %></td>
+                                                <td><%= data.newOrders[i].notelp %></td>
+                                                <td><%= data.newOrders[i].layanan %></td>
+                                                <td><%= data.newOrders[i].paket %></td>
+                                                <td><%= data.newOrders[i].deskripsi %></td>
                                                 <td class="text-center">
-                                                    <a href="/update/<%= data[i].id %>" class="button2">EDIT</a>
-                                                    <a onclick="return confirm('Are you sure?')" href="/delete/<%= data[i].id %>" class="button2">HAPUS</a>
+                                                    <a href="/handle/<%= data.newOrders[i].id %>" class="button2">HANDLE</a>
+                                                    <a href="/cancel/<%= data.newOrders[i].id %>" class="button3">BATAL</a>
                                                 </td>
                                             </tr>
                                         <% } %>
                                     <% } else { %>
                                         <tr>
-                                            <td colspan="4">
+                                            <td colspan="8">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>     
+                <!-- Sedang Dihandle -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <p>Sedang Dihandle</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                        <th>Nama</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Layanan</th>
+                                        <th>Paket</th>
+                                        <th>Deskripsi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.inProgressOrders && data.inProgressOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.inProgressOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.inProgressOrders[i].email %></td>
+                                                <td><%= data.inProgressOrders[i].nama %></td>
+                                                <td><%= data.inProgressOrders[i].notelp %></td>
+                                                <td><%= data.inProgressOrders[i].layanan %></td>
+                                                <td><%= data.inProgressOrders[i].paket %></td>
+                                                <td><%= data.inProgressOrders[i].deskripsi %></td>
+                                                <td class="text-center">
+                                                    <a href="/complete/<%= data.inProgressOrders[i].id %>" class="button2">SELESAI</a>
+                                                </td>
+                                            </tr>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="8">
                                                 <div class="alert alert-danger" role="alert">
                                                     Data Tidak Ditemukan!
                                                 </div>
@@ -64,6 +131,53 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Pesanan Selesai -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <p>Pesanan Selesai</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                        <th>Nama</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Layanan</th>
+                                        <th>Paket</th>
+                                        <th>Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.completedOrders && data.completedOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.completedOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.completedOrders[i].email %></td>
+                                                <td><%= data.completedOrders[i].nama %></td>
+                                                <td><%= data.completedOrders[i].notelp %></td>
+                                                <td><%= data.completedOrders[i].layanan %></td>
+                                                <td><%= data.completedOrders[i].paket %></td>
+                                                <td><%= data.completedOrders[i].deskripsi %></td>
+                                            </tr>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>  
             </div>
         </div>
     </div>

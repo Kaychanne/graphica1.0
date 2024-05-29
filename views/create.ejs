@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <% if (messages.error) { %>
+                <% if (messages && messages.error && messages.error.length > 0) { %>
                     <div class="alert alert-danger" role="alert"><%- messages.error %></div>
                     <% } %>
                 <div class="card">
@@ -24,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
-                                <textarea class="form-control" name="username" rows="4" placeholder="Masukkan Namamu"><%= nama %></textarea>
+                                <textarea class="form-control" name="nama" rows="4" placeholder="Masukkan Namamu"><%= nama %></textarea>
                             </div>
                             <div class="form-group">
                                 <label>No Telepon</label>
