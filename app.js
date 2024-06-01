@@ -6,7 +6,8 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var indexRouter = require('./routes/index');
+var formRouter = require('./routes/form'); 
+var indexRouter = require('./routes/index'); 
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
@@ -31,17 +32,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
-
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.messages = req.flash();
   next();
 });
 
-
-app.use('/', indexRouter);
+app.use('/', indexRouter); 
+app.use('/form', formRouter); 
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
+
 app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;

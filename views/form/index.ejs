@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><img src="/images/logo.png" alt="logo"></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">Artikel</a></li>
+                <li><a href="">Portofolio</a></li>
+                <li><a href="">Layanan</a></li>
+                <li><a href="">Tentang Kami</a></li>
+                <li><a href="">Kontak</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <% if (messages && messages.success && messages.success.length > 0) { %>
+                    <div class="alert alert-success" role="alert"><%- messages.success %></div>
+                <% } %>
+                <% if (messages && messages.error && messages.error.length > 0) { %>
+                    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+                <% } %>
+                <!-- Pesanan Baru -->
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="header">
+                            <p>Pesanan Baru</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                        <th>Nama</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Layanan</th>
+                                        <th>Paket</th>
+                                        <th>Deskripsi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.newOrders && data.newOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.newOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.newOrders[i].email %></td>
+                                                <td><%= data.newOrders[i].nama %></td>
+                                                <td><%= data.newOrders[i].notelp %></td>
+                                                <td><%= data.newOrders[i].layanan %></td>
+                                                <td><%= data.newOrders[i].paket %></td>
+                                                <td><%= data.newOrders[i].deskripsi %></td>
+                                                <td class="text-center">
+                                                    <a href="/handle/<%= data.newOrders[i].id %>" class="button2">HANDLE</a>
+                                                    <a href="/cancel/<%= data.newOrders[i].id %>" class="button3">BATAL</a>
+                                                </td>
+                                            </tr>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="8">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>     
+                <!-- Sedang Dihandle -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <p>Sedang Dihandle</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                        <th>Nama</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Layanan</th>
+                                        <th>Paket</th>
+                                        <th>Deskripsi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.inProgressOrders && data.inProgressOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.inProgressOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.inProgressOrders[i].email %></td>
+                                                <td><%= data.inProgressOrders[i].nama %></td>
+                                                <td><%= data.inProgressOrders[i].notelp %></td>
+                                                <td><%= data.inProgressOrders[i].layanan %></td>
+                                                <td><%= data.inProgressOrders[i].paket %></td>
+                                                <td><%= data.inProgressOrders[i].deskripsi %></td>
+                                                <td class="text-center">
+                                                    <a href="/complete/<%= data.inProgressOrders[i].id %>" class="button2">SELESAI</a>
+                                                </td>
+                                            </tr>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="8">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pesanan Selesai -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <p>Pesanan Selesai</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                        <th>Nama</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Layanan</th>
+                                        <th>Paket</th>
+                                        <th>Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.completedOrders && data.completedOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.completedOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.completedOrders[i].email %></td>
+                                                <td><%= data.completedOrders[i].nama %></td>
+                                                <td><%= data.completedOrders[i].notelp %></td>
+                                                <td><%= data.completedOrders[i].layanan %></td>
+                                                <td><%= data.completedOrders[i].paket %></td>
+                                                <td><%= data.completedOrders[i].deskripsi %></td>
+                                            </tr>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</body>
+</html>
