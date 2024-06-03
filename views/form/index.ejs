@@ -71,8 +71,8 @@
                                                 <td><%= data.newOrders[i].paket %></td>
                                                 <td><%= data.newOrders[i].deskripsi %></td>
                                                 <td class="text-center">
-                                                    <a href="/handle/<%= data.newOrders[i].id %>" class="button2">HANDLE</a>
-                                                    <a href="/cancel/<%= data.newOrders[i].id %>" class="button3">BATAL</a>
+                                                    <a href="/form/handle/<%= data.newOrders[i].id %>" class="button2">HANDLE</a>
+                                                    <a href="/form/cancel/<%= data.newOrders[i].id %>" class="button3">BATAL</a>
                                                 </td>
                                             </tr>
                                         <% } %>
@@ -122,7 +122,7 @@
                                                 <td><%= data.inProgressOrders[i].paket %></td>
                                                 <td><%= data.inProgressOrders[i].deskripsi %></td>
                                                 <td class="text-center">
-                                                    <a href="/complete/<%= data.inProgressOrders[i].id %>" class="button2">SELESAI</a>
+                                                    <a href="/form/complete/<%= data.inProgressOrders[i].id %>" class="button2">SELESAI</a>
                                                 </td>
                                             </tr>
                                         <% } %>
