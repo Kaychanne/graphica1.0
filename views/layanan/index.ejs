@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./form">Pesanan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Layanan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#portfolio">Portofolio</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <% if (messages && messages.success && messages.success.length > 0) { %>
+                    <div class="alert alert-success" role="alert"><%- messages.success %></div>
+                <% } %>
+                <% if (messages && messages.error && messages.error.length > 0) { %>
+                    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+                <% } %>
+                <!-- Pesanan Baru -->
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="header">
+                            <p>Pesanan Baru</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nama</th>
+                                        <th>Image</th>
+                                        <th>Image_link</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% data.forEach(function(post) { %>
+                                        <tr>
+                                                    <td><%= post.nama %></td>
+                                                    <td><%= post.image %></td>
+                                                    <td>
+                                                        <% if (post.image_link) { %>
+                                                            <img src="<%= post.image_link %>" width="100">
+                                                        <% } %>
+                                                        
+                                                    </td>
+                                                    <td><%= post.detail %></td>
+                                        </tr>
+                                    <% }); %>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="8">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>     
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <p>Layanan</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nama</th>
+                                        <th>Image</th>
+                                        <th>Image_link</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.inProgressOrders && data.inProgressOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.inProgressOrders.length; i++) { %>  
+                                            <% data.forEach(function(post) { %>
+                                                <tr>
+                                                    <td><%= post.nama %></td>
+                                                    <td><%= post.image %></td>
+                                                    <td><%= post.image %></td>
+                                                    <td>
+                                                        <% if (post.image_link) { %>
+                                                            <img src="<%= post.image_link %>" width="100">
+                                                        <% } %>
+                                                        
+                                                    </td>
+                                                    <td><%= post.detail %></td>
+                                                </tr>
+                                            <% }); %>
+                                                <% } %>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="8">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</body>
+</html>
