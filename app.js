@@ -13,7 +13,7 @@ var apiRouter = require('./routes/api');
 var registerRoute = require('./routes/register');
 var loginRoute = require('./routes/login');
 var postsRouter = require('./routes/posts');
-
+var artikelRouter = require('./routes/artikel');
 var app = express();
 
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')));
@@ -48,6 +48,7 @@ app.use('/api', apiRouter);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/posts',postsRouter,);
+app.use('/artikel', artikelRouter);
 
 app.use((req, res, next) => {
   var err = new Error('Not Found');

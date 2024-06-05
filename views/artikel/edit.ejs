@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Article</title>
+</head>
+<body>
+  <h1>Edit Article</h1>
+  <form action="/artikel/update/<%= id %>" method="POST">
+    <p>Title: <input type="text" name="title" value="<%= title %>"></p>
+    <p>Content: <textarea name="content"><%= content %></textarea></p>
+    <p><input type="submit" value="Update"></p>
+  </form>
+</body>
+</html>
