@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var registerRoute = require('./routes/register');
 var loginRoute = require('./routes/login');
+var postsRouter = require('./routes/posts');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
+app.use('/posts',postsRouter,);
 
 app.use((req, res, next) => {
   var err = new Error('Not Found');
