@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
+    <title>Pesanan</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/layanan.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -16,13 +16,13 @@
                             <a class="nav-link" href="./">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./form">Pesanan</a>
+                            <a class="nav-link" href="#">Pesanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Layanan</a>
+                            <a class="nav-link" href="./layanan">Produk</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#portfolio">Portofolio</a>
+                            <a class="nav-link" href="./portfolio">Portofolio</a>
                         </li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="card-body">
                         
                         <div class="header">
-                            <p>Pesanan Baru</p>
+                            <p>Layanan</p>
                         </div>
                         <div class="table-container">
                             <table class="table">
@@ -57,19 +57,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% data.forEach(function(post) { %>
-                                        <tr>
-                                                    <td><%= post.nama %></td>
-                                                    <td><%= post.image %></td>
-                                                    <td>
-                                                        <% if (post.image_link) { %>
-                                                            <img src="<%= post.image_link %>" width="100">
-                                                        <% } %>
-                                                        
-                                                    </td>
-                                                    <td><%= post.detail %></td>
-                                        </tr>
-                                    <% }); %>
+                                    <% if(data && data.newOrders && data.newOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.newOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.newOrders[i].nama %></td>
+                                                <td><%= data.newOrders[i].image %></td>
+                                                <td><%= data.newOrders[i].image_link %></td>
+                                                <td><%= data.newOrders[i].detail %></td>
+                                                <td class="text-center">
+                                                    <a href="/form/handle/<%= data.newOrders[i].id %>" class="button2">HANDLE</a>
+                                                    <a href="/form/cancel/<%= data.newOrders[i].id %>" class="button3">BATAL</a>
+                                                </td>
+                                            </tr>
                                         <% } %>
                                     <% } else { %>
                                         <tr>
@@ -85,10 +85,11 @@
                         </div>
                     </div>
                 </div>     
+                <!-- Sedang Dihandle -->
                 <div class="card">
                     <div class="card-body">
                         <div class="header">
-                            <p>Layanan</p>
+                            <p></p>
                         </div>
                         <div class="table-container">
                             <table class="table">
@@ -104,21 +105,16 @@
                                 <tbody>
                                     <% if(data && data.inProgressOrders && data.inProgressOrders.length > 0) { %>
                                         <% for(var i = 0; i < data.inProgressOrders.length; i++) { %>  
-                                            <% data.forEach(function(post) { %>
-                                                <tr>
-                                                    <td><%= post.nama %></td>
-                                                    <td><%= post.image %></td>
-                                                    <td><%= post.image %></td>
-                                                    <td>
-                                                        <% if (post.image_link) { %>
-                                                            <img src="<%= post.image_link %>" width="100">
-                                                        <% } %>
-                                                        
-                                                    </td>
-                                                    <td><%= post.detail %></td>
-                                                </tr>
-                                            <% }); %>
-                                                <% } %>
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.inProgressOrders[i].nama %></td>
+                                                <td><%= data.inProgressOrders[i].image %></td>
+                                                <td><%= data.inProgressOrders[i].image_link %></td>
+                                                <td><%= data.inProgressOrders[i].detail %></td>
+                                                <td class="text-center">
+                                                    <a href="/form/complete/<%= data.inProgressOrders[i].id %>" class="button2">SELESAI</a>
+                                                </td>
+                                            </tr>
                                         <% } %>
                                     <% } else { %>
                                         <tr>
@@ -134,9 +130,53 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Pesanan Selesai -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <p></p>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nama</th>
+                                        <th>Image</th>
+                                        <th>Image_link</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(data && data.completedOrders && data.completedOrders.length > 0) { %>
+                                        <% for(var i = 0; i < data.completedOrders.length; i++) { %>  
+                                            <tr>
+                                                <th scope="row" class="text-center"><%= (i + 1) %></th>
+                                                <td><%= data.completedOrders[i].nama %></td>
+                                                <td><%= data.completedOrders[i].image %></td>
+                                                <td><%= data.completedOrders[i].image_link %></td>
+                                                <td><%= data.completedOrders[i].detail %></td>
+                                            </tr>
+                                        <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Data Tidak Ditemukan!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } %>    
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>  
             </div>
         </div>
     </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
