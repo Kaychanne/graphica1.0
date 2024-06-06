@@ -47,7 +47,7 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
-app.use('/posts',postsRouter,);
+app.use('/posts', postsRouter,);
 app.use('/artikel', artikelRouter);
 
 app.use((req, res, next) => {
