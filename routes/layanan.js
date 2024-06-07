@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
     connection.query('SELECT * FROM layanan ORDER BY id desc', function (err, rows) {
         if (err) {
             req.flash('error', err);
-            res.render('layanan/index', {
+            res.render('layanan', {
                 data: ''
             });
         } else {
