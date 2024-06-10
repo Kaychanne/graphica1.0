@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <nama>Layanan</nama>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
-<body>
-    <form action="/layanan" method="POST">
-    <p>
-        <label for="title">Title</label><br>
-        <input type="text" name="title" id="title" value="<%= title %>">
-    </p>
-    <p>
-        <label for="content">Content</label><br>
-        <textarea name="content" id="content"><%= content %></textarea>
-    </p>
-    <p>
-        <label for="image_link">Image Link</label><br>
-        <input type="text" name="image_link" id="image_link" value="<%= image_link %>">
-    </p>
-    <button type="submit">Save</button>
-    </form>
+
+<body style="background: lightgray">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <% if (messages.error) { %>
+                    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+                    <% } %>
+                <div class="card border-0 shadow rounded">
+                    <div class="card-body">
+                        <form action="/layanan/store" method="post">
+                            <div class="form-group">
+                                <label>nama</label>
+                                <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan nama ">
+                            </div>
+                            <div class="form-group">
+                                <label>image</label>
+                                <textarea class="form-control" name="image" rows="4" placeholder="Masukkan image "><%= image %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>image_link</label>
+                                <textarea class="form-control" name="image_link" rows="4" placeholder="Masukkan image_link "><%= image_link %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>detail</label>
+                                <textarea class="form-control" name="detail" rows="4" placeholder="Masukkan detail "><%= detail %></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">SIMPAN</button>
+                            <button type="reset" class="btn btn-warning">RESET</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>
