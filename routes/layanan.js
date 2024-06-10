@@ -226,6 +226,27 @@ router.post('/update/:nama', function(req, res, next) {
         })
     }
 })
+/**
+ * DELETE POST
+ */
+router.get('/delete/(:id)', function(req, res, next) {
+
+    let id = req.params.id;
+     
+    connection.query('DELETE FROM layanan WHERE id = ' + id, function(err, result) {
+        //if(err) throw err
+        if (err) {
+            // set flash message
+            req.flash('error', err)
+            // redirect to layanan page
+            res.redirect('/layanan')
+        } else {
+            // set flash message
+            req.flash('success', 'Data Berhasil Dihapus!')
+            // redirect to layanan page
+            res.redirect('/layanan')
+        }
+    })
+})
 
 module.exports = router;
-
