@@ -14,6 +14,7 @@ var registerRoute = require('./routes/register');
 var loginRoute = require('./routes/login');
 var portofolioRouter = require('./routes/portofolio');
 var artikelRouter = require('./routes/artikel');
+var layananRouter = require('./routes/layanan');
 var app = express();
 
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')));
@@ -49,6 +50,7 @@ app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/portofolio', portofolioRouter,);
 app.use('/artikel', artikelRouter);
+app.use('/layanan', layananRouter);
 
 app.use((req, res, next) => {
   var err = new Error('Not Found');
