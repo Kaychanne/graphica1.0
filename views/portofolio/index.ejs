@@ -24,7 +24,7 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="posts/create" class="btn btn-md btn-success mb-3">Create</a>
+                        <a href="/portofolio/create" class="btn btn-md btn-success mb-3">Create</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -45,8 +45,8 @@
                                             <td><%= data[i].username%></td>
                                             <td><%= data[i].password%></td>
                                             <td class="text-center">
-                                                <a href="/posts/edit/<%=data[i].id%>" class="btn btn-sm btn-primary">EDIT</a>
-                                                <a onclick="return alert('Are You sure?')" href="/posts/delete/<%=data[i].id%>" class="btn btn-sm btn-danger">HAPUS</a>
+                                                <a href="/portofolio/edit/<%=data[i].id%>" class="btn btn-sm btn-primary">EDIT</a>
+                                                <a onclick="return alert('Are You sure?')" href="/portofolio/delete/<%=data[i].id%>" class="btn btn-sm btn-danger">HAPUS</a>
                                             </td>
                                         </tr>
                                     <% }

@@ -10,12 +10,12 @@ router.get('/', function (req, res, next) {
     connection.query('SELECT * FROM user ORDER BY id desc', function (err, rows) {
         if (err) {
             req.flash('error', err);
-            res.render('posts', {
+            res.render('portofolio', {
                 data: ''
             });
         } else {
             //render ke view posts index
-            res.render('posts/index', {
+            res.render('portofolio/index', {
                 data: rows // <-- data posts
             });
         }
@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
  * CREATE POST
  */
 router.get('/create', function (req, res, next) {
-    res.render('posts/create', {
+    res.render('portofolio/create', {
         email: '',
         username: '',
         password: ''
@@ -49,7 +49,7 @@ router.post('/store', function (req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan email");
         // render to add.ejs with flash message
-        res.render('posts/create', {
+        res.render('portofolio/create', {
             email: email,
             username: username,
             password: password
@@ -62,7 +62,7 @@ router.post('/store', function (req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan username");
         // render to add.ejs with flash message
-        res.render('posts/create', {
+        res.render('portofolio/create', {
             email: email,
             username: username,
             password: password
@@ -75,7 +75,7 @@ router.post('/store', function (req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan password");
         // render to add.ejs with flash message
-        res.render('posts/create', {
+        res.render('portofolio/create', {
             email: email,
             username: username,
             password: password
@@ -98,14 +98,14 @@ router.post('/store', function (req, res, next) {
                 req.flash('error', err);
                  
                 // render to add.ejs
-                res.render('posts/create', {
+                res.render('portofolio/create', {
                     email: formData.email,
                     username: formData.username,
                     password: formData.password                  
                 });
             } else {             
                 req.flash('success', 'Data Berhasil Disimpan!');
-                res.redirect('/posts');
+                res.redirect('/portofolio');
             }
         })
     }
@@ -125,12 +125,12 @@ router.get('/edit/(:id)', function(req, res, next) {
         // if user not found
         if (rows.length <= 0) {
             req.flash('error', 'Data Post Dengan ID ' + id + " Tidak Ditemukan")
-            res.redirect('/posts')
+            res.redirect('/portofolio')
         }
         // if book found
         else {
             // render to edit.ejs
-            res.render('posts/edit', {
+            res.render('portofolio/edit', {
                 id:      rows[0].id,
                 email:   rows[0].email,
                 username: rows[0].username,
@@ -156,7 +156,7 @@ router.post('/update/:id', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Email");
         // render to edit.ejs with flash message
-        res.render('posts/edit', {
+        res.render('portofolio/edit', {
             id:         req.params.id,
             email:      email,
             username:   username,
@@ -170,7 +170,7 @@ router.post('/update/:id', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Username");
         // render to edit.ejs with flash message
-        res.render('posts/edit', {
+        res.render('portofolio/edit', {
             id:         req.params.id,
             email:      email,
             username:   username,
@@ -184,7 +184,7 @@ router.post('/update/:id', function(req, res, next) {
         // set flash message
         req.flash('error', "Silahkan Masukkan Password");
         // render to edit.ejs with flash message
-        res.render('posts/edit', {
+        res.render('portofolio/edit', {
             id:         req.params.id,
             email:      email,
             username:   username,
@@ -208,7 +208,7 @@ router.post('/update/:id', function(req, res, next) {
                 // set flash message
                 req.flash('error', err)
                 // render to edit.ejs
-                res.render('posts/edit', {
+                res.render('portofolio/edit', {
                     id:     req.params.id,
                     email:   formData.email,
                     username: formData.username,
@@ -216,7 +216,7 @@ router.post('/update/:id', function(req, res, next) {
                 })
             } else {
                 req.flash('success', 'Data Berhasil Diupdate!');
-                res.redirect('/posts');
+                res.redirect('/portofolio');
             }
         })
     }
@@ -235,12 +235,12 @@ router.get('/delete/(:id)', function(req, res, next) {
             // set flash message
             req.flash('error', err)
             // redirect to posts page
-            res.redirect('/posts')
+            res.redirect('/portofolio')
         } else {
             // set flash message
             req.flash('success', 'Data Berhasil Dihapus!')
             // redirect to posts page
-            res.redirect('/posts')
+            res.redirect('/portofolio')
         }
     })
 })
