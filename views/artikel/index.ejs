@@ -9,80 +9,78 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-        <nav class="sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./artikel">Artikel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./form">Pesanan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./layanan">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./portfolio">Portofolio</a>
-                    </li>
-                  </ul>
+      <nav class="sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./artikel">Artikel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./form">Pesanan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./layanan">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./portfolio">Portofolio</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <main class="main-content">
+    <div class="card-container">
+      <h1>Articles</h1>
+      <a href="/artikel/create" class="button">Create New Article</a>
+      <div id="articles">
+        <% if (data.length) { %>
+          <% data.forEach(article => { %>
+            <div class="card" onclick="showArticle(<%= article.id %>)">
+              <div class="card-title"><strong><%= article.title %></strong></div>
+              <div class="card-content" id="content-<%= article.id %>"><%= article.content %></div>
+              <div class="card-actions">
+                <a href="/artikel/edit/<%= article.id %>" class="button edit-button">Edit</a>
+                <a href="/artikel/delete/<%= article.id %>" class="button delete-button">Delete</a>
               </div>
-          </nav>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p>No articles found</p>
+        <% } %>
       </div>
     </div>
-        <main class="main-content">
-            <div class="card-container">
-                <h1>Articles</h1>
-                <a href="/artikel/create">Create New Article</a>
-                <div id="articles">
-                    <% if (data.length) { %>
-                        <% data.forEach(article => { %>
-                            <div class="card" onclick='showArticle()'>
-                                <div class="card-title"><%= article.title %></div>
-                                <div class="card-content" id="content-<%= article.id %>"><%= article.content %></div>
-                            </div>
-                        <% }); %>
-                        <% } else { %>
-                        <p>No articles found</p>
-                        <% } %>
-                      </div>
-                    </div>
-                  </main>
-                </div>
-            </div>
-            <div id="myModal" class="modal">
-              <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2 id="modal-title"></h2>
-                <p id="modal-content"></p>
-              </div>
-            </div>
-          <script>
-              function showArticle(id) {
-                console.log('showArticle called with id:', id);  
-                var title = document.querySelector(`#content-${id}`).parentElement.querySelector('.card-title').innerText;
-                var content = document.querySelector(`#content-${id}`).innerText;
+  </main>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-content"></p>
+    </div>
+  </div>
+  <script>
+    function showArticle(id) {
+      var title = document.querySelector(`#content-${id}`).parentElement.querySelector('.card-title').innerText;
+      var content = document.querySelector(`#content-${id}`).innerText;
 
-                console.log('Title:', title);  
-                console.log('Content:', content); 
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-content').innerText = content;
 
-                document.getElementById('modal-title').innerText = title;
-                document.getElementById('modal-content').innerText = content;
+      document.getElementById('myModal').style.display = "block";
+    }
 
-                document.getElementById('myModal').style.display = "block";
-              }
+      function closeModal() {
+        document.getElementById('myModal').style.display = "none";
+      }
 
-              function closeModal() {
-                document.getElementById('myModal').style.display = "none";
-              }
-
-              window.onclick = function(event) {
-                if (event.target == document.getElementById('myModal')) {
-                  closeModal();
-                }
-              }
-            </script>
+      window.onclick = function(event) {
+        if (event.target == document.getElementById('myModal')) {
+          closeModal();
+        }
+      }
+  </script>
 </body>
 </html>
