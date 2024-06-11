@@ -133,23 +133,24 @@ router.post('/store', function (req, res, next) {
 /**
  * EDIT layanan
  */
-router.get('/edit/(:nama)', function(req, res, next) {
+router.get('/edit/(:id)', function(req, res, next) {
 
-    let nama = req.params.nama;
+    let id = req.params.id;
    
-    connection.query('SELECT * FROM layanan WHERE nama = ' + nama, function(err, rows, fields) {
+    connection.query('SELECT * FROM layanan WHERE id = ' + id, function(err, rows, fields) {
         if(err) throw err
          
         // if user not found
         if (rows.length <= 0) {
-            req.flash('error', 'Data Layanan Dengan nama ' + nama + " Tidak Ditemukan")
+            req.flash('error', 'Data Layanan Dengan ID ' + id + " Tidak Ditemukan")
             res.redirect('/layanan')
         }
         // if book found
         else {
             // render to edit.ejs
             res.render('layanan/edit', {
-                nama:      rows[0].nama,
+                id:      rows[0].id,
+                nama:    rows[0].nama,
                 image:   rows[0].image,
                 image_link: rows[0].image_link,
                 detail: rows[0].detail
@@ -161,13 +162,30 @@ router.get('/edit/(:nama)', function(req, res, next) {
 /**
  * UPDATE layanan
  */
-router.post('/update/:nama', function(req, res, next) {
+router.post('/update/:id', function(req, res, next) {
 
-    let nama      = req.params.nama;
+    let id     = req.params.id;
+    let nama      = req.body.nama;
     let image   = req.body.image;
     let image_link = req.body.image_link;
     let detail = req.body.detail;
     let errors  = false;
+
+    if(nama.length === 0) {
+        errors = true;
+
+        // set flash message
+        req.flash('error', "Silahkan Masukkan nama");
+        // render to edit.ejs with flash message
+        res.render('layanan/edit', {
+            id:         req.params.id,
+            nama:       nama,
+            image:      image,
+            image_link: image_link,
+            detail: detail
+        })
+    }
+
 
     if(image.length === 0) {
         errors = true;
@@ -176,9 +194,10 @@ router.post('/update/:nama', function(req, res, next) {
         req.flash('error', "Silahkan Masukkan image");
         // render to edit.ejs with flash message
         res.render('layanan/edit', {
-            nama:         req.params.nama,
+            id:         req.params.id,
+            nama:       nama,
             image:      image,
-            image_link:    image_link,
+            image_link: image_link,
             detail: detail
         })
     }
@@ -187,12 +206,28 @@ router.post('/update/:nama', function(req, res, next) {
         errors = true;
 
         // set flash message
-        req.flash('error', "Silahkan Masukkan Konten");
+        req.flash('error', "Silahkan Masukkan Image Link");
         // render to edit.ejs with flash message
         res.render('layanan/edit', {
-            nama:         req.params.nama,
+            id:         req.params.id,
+            nama:       nama,
             image:      image,
-            image_link:    image_link,
+            image_link: image_link,
+            detail: detail
+        })
+    }
+
+    if(detail.length === 0) {
+        errors = true;
+
+        // set flash message
+        req.flash('error', "Silahkan Masukkan Detail");
+        // render to edit.ejs with flash message
+        res.render('layanan/edit', {
+            id:         req.params.id,
+            nama:       nama,
+            image:      image,
+            image_link: image_link,
             detail: detail
         })
     }
@@ -201,21 +236,23 @@ router.post('/update/:nama', function(req, res, next) {
     if( !errors ) {   
  
         let formData = {
+            nama: nama,
             image: image,
             image_link: image_link,
             detail: detail
         }
 
         // update query
-        connection.query('UPDATE layanan SET ? WHERE nama = ' + nama, formData, function(err, result) {
+        connection.query('UPDATE layanan SET ? WHERE id = ' + id, formData, function(err, result) {
             //if(err) throw err
             if (err) {
                 // set flash message
                 req.flash('error', err)
                 // render to edit.ejs
                 res.render('layanan/edit', {
-                    nama:     req.params.nama,
-                    image:   formData.image,
+                    id:     req.params.id,
+                    nama:   formData.nama,
+                    image:  formData.image,
                     image_link: formData.image_link,
                     detail: formData.detail
                 })
@@ -226,6 +263,7 @@ router.post('/update/:nama', function(req, res, next) {
         })
     }
 })
+
 /**
  * DELETE POST
  */
