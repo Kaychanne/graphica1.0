@@ -73,7 +73,8 @@ body {
 }
 
 .main-content {
-    margin-left: 240px; /* Same as the width of the sidebar */
+    margin-left: 150px; 
+    margin-right: 50px; 
     padding: 20px;
 }
 
@@ -102,7 +103,12 @@ body {
 }
 
 .card-content {
-    margin-bottom: 20px;
+    height: 80px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical; 
 }
 
 .card-actions {
@@ -124,10 +130,12 @@ body {
 
 .edit-button {
     background-color: var(--success-color);
+    margin-top: 10px;
 }
 
 .delete-button {
     background-color: var(--danger-color);
+    margin-top: 10px;
 }
 
 .button:hover {
@@ -148,7 +156,7 @@ body {
 
 .modal-content {
     background-color: var(--white-color);
-    margin: 15% auto;
+    margin: 10px auto;
     padding: 20px;
     border: 1px solid var(--dark-gray-color);
     width: 80%;
