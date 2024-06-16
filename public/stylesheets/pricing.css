@@ -1,0 +1,264 @@
+:root {
+    --primary-color: #14364B;
+    --secondary-color: #326789;
+    --background-color: #F8F8F8;
+    --text-color: #14364B;
+    --white-color: #fff;
+    --light-gray-color: #666;
+    --dark-gray-color: #ddd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Heebo', sans-serif;
+    background-color: var(--background-color);
+}
+
+header {
+    background-color: var(--white-color);
+    color: var(--text-color);
+    padding: 20px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 100px;
+    padding: 20px 0;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin-right: 60px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.navbar ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.navbar ul li img {
+    vertical-align: middle;
+}
+
+.section2 {
+    position: relative; 
+    display: flex; 
+    margin-left: 100px;
+    align-items: center;
+    /* background-color: var(--white-color) ; */
+    flex-wrap: wrap;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+.title {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 24px;
+}
+  
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    margin-top: 20px;
+}
+  
+.col {
+    flex-basis: calc(33% - 15px);
+    margin-bottom: 20px; 
+}
+
+.card {
+    border: 1px solid var(--dark-gray-color);
+    border-radius: 5px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card h3, .card h2, .card h1 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.card-body button {
+    align-self: flex-end;
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.card-body button a {
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 13px;
+}
+
+.card-body button:hover {
+    background-color: var(--secondary-color);
+}
+
+.card ul {
+    padding: 0;
+}
+
+.card ul li {
+    margin-bottom: 5px;
+}
+
+footer {
+    background-color: var(--background-color);
+    padding: 20px 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    text-align: center;
+}
+
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+  
+.social-links {
+    list-style-type: none;
+    padding: 0;
+}
+  
+.social-links li {
+    display: inline-block;
+    margin-right: 10px;
+}
+  
+.social-links li a {
+    color: var(--primary-color);
+    font-size: 24px;
+}
+  
+.social-links li a:hover {
+    color:var(--secondary-color);
+}
+
+.menu-toggle {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    margin-right: 20px;
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .navbar {
+        margin: 0 50px;
+    }
+
+    .section2 {
+        margin: 0 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar ul li {
+        margin-right: 30px;
+    }
+
+    .col {
+        flex-basis: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 20px;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        margin-top: -50px;
+    }
+
+    .navbar.active ul {
+        display: flex;
+    }
+
+    .navbar ul li {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .section2 {
+        margin: 0 20px;
+    }
+
+    .col {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        margin: 0 10px;
+    }
+
+    .section2 {
+        margin: 0 10px;
+    }
+    
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        margin-top: -50px;
+    }
+}

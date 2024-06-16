@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphica Lab</title>
+    <link rel="stylesheet" type="text/css" href="view/css/layanan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <img src="view/assets/logo.png" alt="logo">
+    </div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="artikel.html">Artikel</a></li>
+          <li><a href="portofolio.html">Portofolio</a></li>
+          <li><a href="layanan.html">Layanan</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="#Contact">Kontak</a></li>
+        </ul>   
+    </div>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+        <article>
+          <div class="section2">
+            <div class="container">
+              <h1 class="judul1">LAYANAN DESAIN TERLENGKAP</h1>
+              <h2 class="judul2">Pilihan Jasa Branding & Desain <br> Lainnya</h2>
+              <div class="row">
+                <div class="col">
+                  <div class="card">
+                    <img src="view/assets/cover logo.png" alt="Album 1">
+                    <div class="card-body">
+                      <h3>Desain Logo</h3>
+                      <p>Buat Logo sebagai langkah awal membuat identitas brand sebuah bisnis agar mudah dikenali oleh calon customer.</p>
+                      <button><a href="dlogo.html">Selengkapnya >></a></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <img src="view/assets/cover ui ux.png" alt="Album 3">
+                    <div class="card-body">
+                      <h3>Desain UI UX</h3>
+                      <p>Menawarkan solusi desain UI/UX yang intuitif dan menarik untuk meningkatkan pengalaman pengguna secara signifikan.</p>
+                      <button><a href="duiux.html">Selengkapnya >></a></button>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col">
+                    <div class="card">
+                      <img src="view/assets/cover arinter.png" alt="Album 2">
+                      <div class="card-body">
+                        <h3>Desain Arsitektur Interior</h3>
+                        <p>Membawa kehidupan pada ruang dengan konsep arsitektur interior yang inovatif dan memikat, menciptakan lingkungan yang memadukan fungsi dan estetika dengan sempurna.</p>
+                        <button><a href="darinter.html">Selengkapnya >></a></button>
+                      </div>
+                    </div>
+                  </div>
+          <footer id="Contact">
+            <div class="footer-container">
+              <div class="footer-section">
+                <h3 style="color: #14364B;">Hubungi Kami</h3>
+                <ul class="social-links">
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                  <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </footer> 
+          <script>
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
+              document.querySelector('.navbar').classList.toggle('active');
+            });
+          </script>
+</body>
+</html>
