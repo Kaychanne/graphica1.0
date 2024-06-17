@@ -20,18 +20,18 @@
                     <% } %>
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="/portofolio/store" method="post">
+                        <form action="/portofolio/store" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" name="email" value="<%= email %>" placeholder="Masukkan Email">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan Nama">
                             </div>
                             <div class="form-group">
-                                <label>Username</label>
-                                <textarea class="form-control" name="username" rows="4" placeholder="Masukkan Username"><%= username %></textarea>
+                                <label>Image</label>
+                                <input type="file" class="form-control" name="image" placeholder="Upload image">
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <input type="text" class="form-control" name="password" value="<%= password %>" placeholder="Masukkan Password">
+                                <label>Image_link</label>
+                                <input type="text" class="form-control" name="image_link" value="<%= image_link %>" placeholder="Masukkan Image_Link Post">
                             </div>
                             <button type="submit" class="btn btn-primary">SIMPAN</button>
                             <button type="reset" class="btn btn-warning">RESET</button>
