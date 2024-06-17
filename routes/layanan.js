@@ -50,7 +50,7 @@ router.get('/create', function (req, res, next) {
         image_link: '',
         detail: ''
     })
-})
+})  
 
 /**
  * STORE layanan

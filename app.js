@@ -8,10 +8,10 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var formRouter = require('./routes/form'); 
 var indexRouter = require('./routes/index'); 
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-var registerRoute = require('./routes/register');
-var loginRoute = require('./routes/login');
+var registerRouter = require('./routes/register');
+var loginRouter = require('./routes/login');
 var portofolioRouter = require('./routes/portofolio');
 var artikelRouter = require('./routes/artikel');
 var layananRouter = require('./routes/layanan');
@@ -44,13 +44,17 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter); 
 app.use('/form', formRouter); 
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/api', apiRouter);
-app.use('/register', registerRoute);
-app.use('/login', loginRoute);
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 app.use('/portofolio', portofolioRouter,);
 app.use('/artikel', artikelRouter);
 app.use('/layanan', layananRouter);
+
+app.get('/frontend', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public/frontend/index.html'));
+});
 
 app.use((req, res, next) => {
   var err = new Error('Not Found');

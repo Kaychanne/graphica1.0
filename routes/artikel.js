@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../lib/db');
 
-// Read - List all artikel
+// Read - List all artikel (HTML response)
 router.get('/', (req, res, next) => {
   connection.query('SELECT * FROM artikel', (err, rows) => {
     if (err) {
@@ -10,6 +10,17 @@ router.get('/', (req, res, next) => {
       res.render('artikel/index', { data: '' });
     } else {
       res.render('artikel/index', { data: rows });
+    }
+  });
+});
+
+// Read - List all artikel (JSON response)
+router.get('/api/artikel', (req, res, next) => {
+  connection.query('SELECT * FROM artikel', (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json({ data: rows });
     }
   });
 });
@@ -22,13 +33,10 @@ router.get('/create', (req, res, next) => {
   });
 });
 
-// Create - Save new article
+// Create - Save new article (HTML response)
 router.post('/create', (req, res, next) => {
   var { title, content } = req.body;
-  var form_data = {
-    title: title,
-    content: content
-  };
+  var form_data = { title, content };
 
   connection.query('INSERT INTO artikel SET ?', form_data, (err, result) => {
     if (err) {
@@ -40,6 +48,20 @@ router.post('/create', (req, res, next) => {
     } else {
       req.flash('success', 'Article added successfully!');
       res.redirect('/artikel');
+    }
+  });
+});
+
+// Create - Save new article (JSON response)
+router.post('/api/artikel', (req, res, next) => {
+  var { title, content } = req.body;
+  var form_data = { title, content };
+
+  connection.query('INSERT INTO artikel SET ?', form_data, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json({ success: 'Article added successfully!' });
     }
   });
 });
@@ -68,10 +90,7 @@ router.get('/edit/:id', (req, res, next) => {
 router.post('/update/:id', (req, res, next) => {
   var id = req.params.id;
   var { title, content } = req.body;
-  var form_data = {
-    title: title,
-    content: content
-  };
+  var form_data = { title, content };
 
   connection.query('UPDATE artikel SET ? WHERE id = ' + id, form_data, (err, result) => {
     if (err) {

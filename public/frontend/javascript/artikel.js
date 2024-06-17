@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var backendURL = 'http://localhost:3000/artikel'; 
+    var backendURL = 'http://localhost:3000'; // Adjust this URL as needed
 
+    // Fetch articles from backend
     fetch(`${backendURL}/artikel`)
         .then(response => response.json())
         .then(data => {
@@ -16,11 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+    // Handle form submission for creating a new article
     document.getElementById('create-form').addEventListener('submit', function(event) {
         event.preventDefault();
         var title = document.getElementById('title').value;
         var content = document.getElementById('content').value;
-        
+
         fetch(`${backendURL}/artikel/create`, {
             method: 'POST',
             headers: {
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error(data.error);
             } else {
                 alert(data.success);
-                location.reload(); 
+                location.reload(); // Reload the page to show the new article
             }
         });
     });
