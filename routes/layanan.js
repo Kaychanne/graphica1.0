@@ -82,137 +82,49 @@ router.post('/store', upload.single('image'), function (req, res, next) {
 /**
  * EDIT layanan
  */
-router.get('/edit/(:id)', function(req, res, next) {
-
+router.get('/edit/:id', function (req, res, next) {
     let id = req.params.id;
-   
-    connection.query('SELECT * FROM layanan WHERE id = ' + id, function(err, rows, fields) {
-        if(err) throw err
-         
-        // if user not found
+    connection.query('SELECT * FROM layanan WHERE id = ?', [id], function (err, rows) {
+        if (err) throw err;
         if (rows.length <= 0) {
-            req.flash('error', 'Data Layanan Dengan ID ' + id + " Tidak Ditemukan")
-            res.redirect('/layanan')
+            req.flash('error', `Data with ID ${id} not found`);
+            res.redirect('/layanan');
+        } else {
+            res.render('layanan/edit', { ...rows[0] });
         }
-        // if book found
-        else {
-            // render to edit.ejs
-            res.render('layanan/edit', {
-                id:      rows[0].id,
-                nama:    rows[0].nama,
-                image:   rows[0].image,
-                image_link: rows[0].image_link,
-                detail: rows[0].detail
-            })
-        }
-    })
-})
-
+    });
+});
 /**
  * UPDATE layanan
  */
-router.post('/update/:id', function(req, res, next) {
+router.post('/update/:id', upload.single('image'), function (req, res, next) {
+    let id = req.params.id;
+    let { nama, image_link, detail } = req.body;
+    let image = req.file ? req.file.filename : null;
+    let errors = false;
 
-    let id     = req.params.id;
-    let nama      = req.body.nama;
-    let image   = req.body.image;
-    let image_link = req.body.image_link;
-    let detail = req.body.detail;
-    let errors  = false;
-
-    if(nama.length === 0) {
+    if (!nama || !image_link || !detail) {
         errors = true;
-
-        // set flash message
-        req.flash('error', "Silahkan Masukkan nama");
-        // render to edit.ejs with flash message
-        res.render('layanan/edit', {
-            id:         req.params.id,
-            nama:       nama,
-            image:      image,
-            image_link: image_link,
-            detail: detail
-        })
+        req.flash('error', 'Please fill all fields');
+        res.render('layanan/edit', { id, nama, image: '', image_link, detail });
     }
 
-
-    if(image.length === 0) {
-        errors = true;
-
-        // set flash message
-        req.flash('error', "Silahkan Masukkan image");
-        // render to edit.ejs with flash message
-        res.render('layanan/edit', {
-            id:         req.params.id,
-            nama:       nama,
-            image:      image,
-            image_link: image_link,
-            detail: detail
-        })
-    }
-
-    if(image_link.length === 0) {
-        errors = true;
-
-        // set flash message
-        req.flash('error', "Silahkan Masukkan Image Link");
-        // render to edit.ejs with flash message
-        res.render('layanan/edit', {
-            id:         req.params.id,
-            nama:       nama,
-            image:      image,
-            image_link: image_link,
-            detail: detail
-        })
-    }
-
-    if(detail.length === 0) {
-        errors = true;
-
-        // set flash message
-        req.flash('error', "Silahkan Masukkan Detail");
-        // render to edit.ejs with flash message
-        res.render('layanan/edit', {
-            id:         req.params.id,
-            nama:       nama,
-            image:      image,
-            image_link: image_link,
-            detail: detail
-        })
-    }
-
-    // if no error
-    if( !errors ) {   
- 
-        let formData = {
-            nama: nama,
-            image: image,
-            image_link: image_link,
-            detail: detail
+    if (!errors) {
+        let formData = { nama, image_link, detail };
+        if (image) {
+            formData.image = image;
         }
-
-        // update query
-        connection.query('UPDATE layanan SET ? WHERE id = ' + id, formData, function(err, result) {
-            //if(err) throw err
+        connection.query('UPDATE layanan SET ? WHERE id = ?', [formData, id], function (err, result) {
             if (err) {
-                // set flash message
-                req.flash('error', err)
-                // render to edit.ejs
-                res.render('layanan/edit', {
-                    id:     req.params.id,
-                    nama:   formData.nama,
-                    image:  formData.image,
-                    image_link: formData.image_link,
-                    detail: formData.detail
-                })
+                req.flash('error', err);
+                res.render('layanan/edit', { id, nama, image: '', image_link, detail });
             } else {
-                req.flash('success', 'Data Berhasil Diupdate!');
+                req.flash('success', 'Data Updated Successfully!');
                 res.redirect('/layanan');
             }
-        })
+        });
     }
-})
-
+});
 /**
  * DELETE POST
  */

@@ -20,22 +20,22 @@
                 <% } %>
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="/layanan/update/<%= id %>" method="post">
+                        <form action="/layanan/update/<%= id %>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan Nama Post">
+                                <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan Nama">
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <textarea class="form-control" name="image" rows="4" placeholder="Masukkan image Post"><%= image %></textarea>
+                                <input type="file" class="form-control" name="image">
                             </div>
                             <div class="form-group">
                                 <label>Image_link</label>
-                                <textarea class="form-control" name="image_link" rows="4" placeholder="Masukkan image_link Post"><%= image_link %></textarea>
+                                <textarea class="form-control" name="image_link" rows="4" placeholder="Masukkan Image Link"><%= image_link %></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Detail</label>
-                                <textarea class="form-control" name="detail" rows="4" placeholder="Masukkan detail Post"><%= detail %></textarea>
+                                <textarea class="form-control" name="detail" rows="4" placeholder="Masukkan Detail"><%= detail %></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">UPDATE</button>
                             <button type="reset" class="btn btn-warning">RESET</button>
@@ -49,7 +49,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    </script>
 </body>
 </html>
-
