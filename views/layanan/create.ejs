@@ -17,25 +17,25 @@
             <div class="col-md-12">
                 <% if (messages.error) { %>
                     <div class="alert alert-danger" role="alert"><%- messages.error %></div>
-                    <% } %>
+                <% } %>
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="/layanan/store" method="post">
+                        <form action="/layanan/store" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label>nama</label>
-                                <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan nama ">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" name="nama" value="<%= nama %>" placeholder="Masukkan nama">
                             </div>
                             <div class="form-group">
-                                <label>image</label>
-                                <textarea class="form-control" name="image" rows="4" placeholder="Masukkan image "><%= image %></textarea>
+                                <label>Image</label>
+                                <input type="file" class="form-control" name="image" placeholder="Upload image">
                             </div>
                             <div class="form-group">
-                                <label>image_link</label>
-                                <textarea class="form-control" name="image_link" rows="4" placeholder="Masukkan image_link "><%= image_link %></textarea>
+                                <label>Image Link</label>
+                                <input type="text" class="form-control" name="image_link" value="<%= image_link %>" placeholder="Masukkan image link">
                             </div>
                             <div class="form-group">
-                                <label>detail</label>
-                                <textarea class="form-control" name="detail" rows="4" placeholder="Masukkan detail "><%= detail %></textarea>
+                                <label>Detail</label>
+                                <textarea class="form-control" name="detail" rows="4" placeholder="Masukkan detail"><%= detail %></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">SIMPAN</button>
                             <button type="reset" class="btn btn-warning">RESET</button>
