@@ -205,6 +205,35 @@ footer {
     color: var(--secondary-color);
 }
 
+button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-button button {
+    background-color: var(--primary-color);
+    margin-right: 100px;
+}
+
+.login-button button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.login-button a {
+    color: var(--white-color);
+    text-decoration: none;
+}
+
 @media (max-width: 1200px) {
     .navbar {
         margin: 0 50px;
