@@ -47,7 +47,6 @@ router.get('/create', function (req, res, next) {
     res.render('layanan/create', {
         nama: '',
         image: '',
-        image_link: '',
         detail: ''
     })
 })  

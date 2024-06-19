@@ -31,9 +31,38 @@
 <div class="session">
   <h1>Daftar Artikel</h1>
     <ul id="artikel-list">
-      
+
     </ul>
 </div>
-    <script src="javascript/artikel.js"></script> 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-content"></p>
+  </div>
+</div>
+<script>
+  
+  function showArticle(id) {
+    var title = document.querySelector(`#content-${id}`).parentElement.querySelector('.card-title').innerText;
+    var content = document.querySelector(`#content-${id}`).innerText;
+
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-content').innerText = content;
+
+    document.getElementById('myModal').style.display = "block";
+  }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('myModal')) {
+        closeModal();
+      }
+    }
+</script>
+<script src="javascript/artikel.js"></script> 
 </body>
 </html>

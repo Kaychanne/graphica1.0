@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../lib/db');
 
-// Read - List all artikel (HTML response)
+
 router.get('/', (req, res, next) => {
   connection.query('SELECT * FROM artikel', (err, rows) => {
     if (err) {
@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// Read - List all artikel (JSON response)
+
 router.get('/api/artikel', (req, res, next) => {
   connection.query('SELECT * FROM artikel', (err, rows) => {
     if (err) {
@@ -25,7 +25,7 @@ router.get('/api/artikel', (req, res, next) => {
   });
 });
 
-// Create - Show create form
+
 router.get('/create', (req, res, next) => {
   res.render('artikel/create', {
     title: '',
@@ -33,7 +33,7 @@ router.get('/create', (req, res, next) => {
   });
 });
 
-// Create - Save new article (HTML response)
+
 router.post('/create', (req, res, next) => {
   var { title, content } = req.body;
   var form_data = { title, content };
@@ -52,7 +52,7 @@ router.post('/create', (req, res, next) => {
   });
 });
 
-// Create - Save new article (JSON response)
+
 router.post('/api/artikel', (req, res, next) => {
   var { title, content } = req.body;
   var form_data = { title, content };
@@ -66,7 +66,7 @@ router.post('/api/artikel', (req, res, next) => {
   });
 });
 
-// Update - Show edit form
+
 router.get('/edit/:id', (req, res, next) => {
   var id = req.params.id;
 
@@ -86,7 +86,7 @@ router.get('/edit/:id', (req, res, next) => {
   });
 });
 
-// Update - Save edited article
+
 router.post('/update/:id', (req, res, next) => {
   var id = req.params.id;
   var { title, content } = req.body;
@@ -107,7 +107,7 @@ router.post('/update/:id', (req, res, next) => {
   });
 });
 
-// Delete - Delete article
+
 router.get('/delete/:id', (req, res, next) => {
   var id = req.params.id;
 
