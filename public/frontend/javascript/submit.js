@@ -4,7 +4,7 @@ function onPesananSubmit (event){
     const final = Object.fromEntries(new FormData(event.target).entries());
     $.ajax({
         type: "POST",
-        url: "http://localhost:3000/api/1234567890",
+        url: "/api/1234567890",
         data: JSON.stringify(final),
         contentType: "application/json",
         success: function (data) {

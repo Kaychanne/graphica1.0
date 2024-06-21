@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var backendURL = 'http://localhost:3000'; 
+    var backendURL = ''; 
     fetch(`${backendURL}/artikel/api/artikel`)
         .then(response => response.json())
         .then(data => {

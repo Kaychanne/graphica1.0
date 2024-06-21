@@ -16,7 +16,7 @@ router.post('/1234567890', async function(req, res, next){
         deskripsi: deskripsi
     };
 
-    await com.talk("http://localhost:3000/api/pesanan", "json", bodyData, (response) => {
+    await com.talk("/api/pesanan", "json", bodyData, (response) => {
         response.json().then((data) => {
             res.json(data);
         });
