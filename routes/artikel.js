@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 });
 
 
-router.get('https://graphica.gajiin.my.id/api/artikel', (req, res, next) => {
+router.get('/api/artikel', (req, res, next) => {
   connection.query('SELECT * FROM artikel', (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
