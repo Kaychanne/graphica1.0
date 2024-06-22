@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var backendURL = 'https://graphica.gajiin.my.id'; 
-    // const originUrl = window.location.origin;
+    var backendURL = 'https://graphica.gajiin.my.id';
     fetch(`${backendURL}/artikel/api/artikel`)
         .then(response => response.json())
         .then(data => {

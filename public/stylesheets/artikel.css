@@ -105,7 +105,7 @@ body {
 .card-content {
     height: 80px; 
     overflow: hidden; 
-    /* text-overflow: ellipsis;  */
+    text-overflow: ellipsis; 
     display: -webkit-box; 
     -webkit-line-clamp: 4; 
     -webkit-box-orient: vertical; 
