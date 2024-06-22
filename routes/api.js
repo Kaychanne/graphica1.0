@@ -4,7 +4,7 @@ var router = express.Router();
 //import database
 var connection = require("../lib/db");
 var com = require("../lib/com");
-router.post('/1234567890', async function(req, res, next){
+router.post('https://graphica.gajiin.my.id/1234567890', async function(req, res, next){
     const{email, nama, notelp, layanan, paket, deskripsi} =req.body;
     console.log(req.body);
     const bodyData = {
@@ -16,7 +16,7 @@ router.post('/1234567890', async function(req, res, next){
         deskripsi: deskripsi
     };
 
-    await com.talk("/api/pesanan", "json", bodyData, (response) => {
+    await com.talk(res, "https://graphica.gajiin.my.id/api/pesanan", "json", bodyData, (response) => {
         response.json().then((data) => {
             res.json(data);
         });

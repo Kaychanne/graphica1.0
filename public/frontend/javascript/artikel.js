@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var backendURL = ''; 
+    var backendURL = 'https://graphica.gajiin.my.id/'; 
+    // Jika link yang tertampil di browser nya ini
+    // https://graphica.gajiin.my.id/frontend/xxx
+    // maka origin nya ini :
+    // https://graphica.gajiin.my.id/
+    const originUrl = window.location.origin;
     fetch(`${backendURL}/artikel/api/artikel`)
         .then(response => response.json())
         .then(data => {
