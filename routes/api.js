@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var connection = require("../lib/db");
 var com = require("../lib/com");
-router.post('https://graphica.gajiin.my.id/1234567890', async function(req, res, next){
+router.post('/1234567890', async function(req, res, next){
     const{email, nama, notelp, layanan, paket, deskripsi} =req.body;
     console.log(req.body);
     const bodyData = {
