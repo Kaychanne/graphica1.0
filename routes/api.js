@@ -1,7 +1,5 @@
 var express = require("express");
 var router = express.Router();
-
-//import database
 var connection = require("../lib/db");
 var com = require("../lib/com");
 router.post('https://graphica.gajiin.my.id/1234567890', async function(req, res, next){
